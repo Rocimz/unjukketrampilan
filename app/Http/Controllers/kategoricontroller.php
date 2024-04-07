@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kategori;
+use App\Models\produk;
 use Illuminate\Http\Request;
 
 class kategoricontroller extends Controller
@@ -11,7 +13,8 @@ class kategoricontroller extends Controller
      */
     public function index()
     {
-        //
+        $data= kategori::all();        
+        return view('tampilkategori',compact('data'));
     }
 
     /**
@@ -19,7 +22,8 @@ class kategoricontroller extends Controller
      */
     public function create()
     {
-        //
+        produk::all();
+        return view('tambah',compact('produk'));
     }
 
     /**
@@ -27,7 +31,13 @@ class kategoricontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valid=$request->validate([
+            'namakategeri'=>'required|string',
+            'desckatagori'=>'required|string',
+            'produk_id'=>'required|integer',
+        ]);
+        kategori::create($valid);
+        return redirect('kategori');
     }
 
     /**
@@ -43,7 +53,8 @@ class kategoricontroller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        produk::all();
+        return view('editkategori',compact('produk'));
     }
 
     /**
@@ -51,7 +62,13 @@ class kategoricontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $valid=$request->validate([
+            'namakategeri'=>'required|string',
+            'desckatagori'=>'required|string',
+            'produk_id'=>'required|integer',
+        ]);
+        kategori::find($id)->update($valid);
+        return redirect('kategori');
     }
 
     /**
@@ -59,6 +76,7 @@ class kategoricontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        kategori::find($id)->delete($id);
+        return redirect('kategori');
     }
 }

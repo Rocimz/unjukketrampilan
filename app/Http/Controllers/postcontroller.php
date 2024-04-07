@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\post;
+use App\Models\produk;
 use Illuminate\Http\Request;
 
 class postcontroller extends Controller
@@ -11,7 +13,8 @@ class postcontroller extends Controller
      */
     public function index()
     {
-        //
+        $data=post::all();
+        return view('tampilpost',compact('data'));
     }
 
     /**
@@ -19,7 +22,8 @@ class postcontroller extends Controller
      */
     public function create()
     {
-        //
+        produk::all();
+        return view('tambahpost',compact('produk'));
     }
 
     /**
@@ -27,7 +31,13 @@ class postcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valid=$request->validate([
+            'judul'=>'required|string',
+            'isi'=>'required|string',
+            'tanggaldibuat'=>'required|date',
+        ]);
+        post::create($valid);
+        return view('post');
     }
 
     /**
@@ -43,7 +53,8 @@ class postcontroller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        produk::all();
+        return view('editkategori',compact('produk'));
     }
 
     /**
@@ -51,7 +62,13 @@ class postcontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $valid=$request->validate([
+            'judul'=>'required|string',
+            'isi'=>'required|string',
+            'tanggaldibuat'=>'required|date',
+        ]);
+        post::find($id)->update($valid);
+        return view('post');
     }
 
     /**
@@ -59,6 +76,7 @@ class postcontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        post::find($id)->delete($id);
+        return view('post');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\produk;
 use Illuminate\Http\Request;
 
 class produkcontroller extends Controller
@@ -11,7 +12,8 @@ class produkcontroller extends Controller
      */
     public function index()
     {
-        //
+        $data= produk::all();        
+        return view('tampilproduk',compact('data'));
     }
 
     /**
@@ -19,7 +21,7 @@ class produkcontroller extends Controller
      */
     public function create()
     {
-        //
+        return view('tambahproduk');
     }
 
     /**
@@ -27,7 +29,14 @@ class produkcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valid= $request->validate([
+            'namaproduk'=>'required|string',
+            'foto'=>'required|string',
+            'harga'=>'required|integer',
+            'descproduk'=>'required|integer',
+        ]);
+        produk::create($valid);
+        return redirect('produk');
     }
 
     /**
@@ -43,7 +52,7 @@ class produkcontroller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('editkategori');
     }
 
     /**
@@ -51,7 +60,14 @@ class produkcontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $valid= $request->validate([
+            'namaproduk'=>'required|string',
+            'foto'=>'required|string',
+            'harga'=>'required|integer',
+            'descproduk'=>'required|integer',
+        ]);
+        produk::find($id)->update($valid);
+        return redirect('produk');
     }
 
     /**
@@ -59,6 +75,7 @@ class produkcontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        produk::find($id)->delete($id);
+        return redirect('produk');
     }
 }
