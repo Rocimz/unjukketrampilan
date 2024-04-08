@@ -9,7 +9,7 @@ class post extends Model
 {
     use HasFactory;
     protected $table='post';
-    protected $guarded='[id]';
+    protected $guarded = ['id'];
 
     function produk()  {
         return $this->belongsTo(produk::class);

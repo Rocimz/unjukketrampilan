@@ -31,10 +31,11 @@ class produkcontroller extends Controller
     {
         $valid= $request->validate([
             'namaproduk'=>'required|string',
-            'foto'=>'required|string',
+            'foto'=>'required|max:2000|mimes:png,jpg',
             'harga'=>'required|integer',
             'descproduk'=>'required|integer',
         ]);
+        $valid['foto']= $request->file('foto')->store('img');
         produk::create($valid);
         return redirect('produk');
     }
@@ -52,7 +53,8 @@ class produkcontroller extends Controller
      */
     public function edit(string $id)
     {
-        return view('editkategori');
+        $data=produk::find($id);
+        return view('editkategori',compact('data'));
     }
 
     /**
@@ -62,7 +64,7 @@ class produkcontroller extends Controller
     {
         $valid= $request->validate([
             'namaproduk'=>'required|string',
-            'foto'=>'required|string',
+            'foto'=>'string',
             'harga'=>'required|integer',
             'descproduk'=>'required|integer',
         ]);
