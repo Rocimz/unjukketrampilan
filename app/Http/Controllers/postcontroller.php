@@ -13,7 +13,7 @@ class postcontroller extends Controller
      */
     public function index()
     {
-        $data=post::all();
+        $data= post::all();        
         return view('tampilpost',compact('data'));
     }
 
@@ -22,8 +22,8 @@ class postcontroller extends Controller
      */
     public function create()
     {
-        produk::all();
-        return view('tambahpost',compact('produk'));
+        $data=produk::all();
+        return view('tambahpost',compact('data'));
     }
 
     /**
@@ -35,9 +35,10 @@ class postcontroller extends Controller
             'judul'=>'required|string',
             'isi'=>'required|string',
             'tanggaldibuat'=>'required|date',
+            'produk_id'=>'required|integer',
         ]);
         post::create($valid);
-        return view('post');
+        return redirect('post');
     }
 
     /**
@@ -53,8 +54,9 @@ class postcontroller extends Controller
      */
     public function edit(string $id)
     {
-        produk::all();
-        return view('editkategori',compact('produk'));
+        $data=post::find($id);
+        $produk=produk::all();
+        return view('editpost',compact('data','produk'));
     }
 
     /**
@@ -66,9 +68,10 @@ class postcontroller extends Controller
             'judul'=>'required|string',
             'isi'=>'required|string',
             'tanggaldibuat'=>'required|date',
+            'produk_id'=>'required|integer',
         ]);
         post::find($id)->update($valid);
-        return view('post');
+        return redirect('post');
     }
 
     /**
@@ -77,6 +80,6 @@ class postcontroller extends Controller
     public function destroy(string $id)
     {
         post::find($id)->delete($id);
-        return view('post');
+        return redirect('post');
     }
 }

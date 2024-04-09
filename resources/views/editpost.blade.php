@@ -13,11 +13,15 @@ Tambah Post
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">isi</label>
-        <input type="number" class="form-control" name="isi" value="{{$data->isi}}">
+        <textarea class="form-control" rows="3" name="isi" value="">{{$data->judul}}</textarea>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">tanggal dibuat</label>
         <input type="date" class="form-control" name="tanggaldibuat" value="{{$data->tanggaldibuat}}">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Nama Produk</label>
+        <input type="text" class="form-control" name="produk_id" value="{{$data->produk_id}}">
       </div>
     
     <!-- /.card-body -->
