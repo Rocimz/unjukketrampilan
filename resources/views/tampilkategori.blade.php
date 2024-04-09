@@ -19,8 +19,16 @@
         <th scope="row">{{$loop->iteration}}</th>
         <td>{{$item->namakatageri}}</td>
         <td>{{$item->desckatagori}}</td>
-        <td>ss</td>
-        <td>as</td>
+        <td>{{$item->produk->namaproduk}}</td>
+        <td class="no-wrap-text"> 
+          <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="{{route('kategori.edit',$item->id)}}" class="btn btn-warning">Edit</a>&nbsp&nbsp
+              <form action="{{route('kategori.destroy',$item->id)}}" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button type="submit" class="btn btn-danger">Hapus</button>
+              </form>
+          </div>
       </tr> 
       @endforeach     
     </tbody>

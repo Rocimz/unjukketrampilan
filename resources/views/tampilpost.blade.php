@@ -20,7 +20,15 @@
         <td>{{$item->judul}}</td>
         <td>{{$item->isi}}</td>
         <td>{{$item->tanggaldibuat}}</td>
-        <td>ss</td>
+        <td class="no-wrap-text"> 
+          <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="{{route('post.edit',$item->id)}}" class="btn btn-warning">Edit</a>&nbsp&nbsp
+              <form action="{{route('post.destroy',$item->id)}}" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button type="submit" class="btn btn-danger">Hapus</button>
+              </form>
+          </div>
       </tr> 
       @endforeach     
     </tbody>

@@ -22,8 +22,8 @@ class kategoricontroller extends Controller
      */
     public function create()
     {
-        produk::all();
-        return view('tambah',compact('produk'));
+        $produk=produk::all();
+        return view('tambahkategori',compact('produk'));
     }
 
     /**
@@ -53,7 +53,7 @@ class kategoricontroller extends Controller
      */
     public function edit(string $id)
     {
-        produk::all();
+        $produk=produk::all();
         return view('editkategori',compact('produk'));
     }
 
