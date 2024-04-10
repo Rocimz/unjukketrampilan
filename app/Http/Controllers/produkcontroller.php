@@ -54,7 +54,7 @@ class produkcontroller extends Controller
     public function edit(string $id)
     {
         $data=produk::find($id);
-        return view('editkategori',compact('data'));
+        return view('editproduk',compact('data'));
     }
 
     /**

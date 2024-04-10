@@ -22,8 +22,8 @@ class kategoricontroller extends Controller
      */
     public function create()
     {
-        $produk=produk::all();
-        return view('tambahkategori',compact('produk'));
+        $data=produk::all();
+        return view('tambahkategori',compact('data'));
     }
 
     /**
@@ -32,8 +32,8 @@ class kategoricontroller extends Controller
     public function store(Request $request)
     {
         $valid=$request->validate([
-            'namakategeri'=>'required|string',
-            'desckatagori'=>'required|string',
+            'namakatageri'=>'required|string',
+            'desckatagori'=>'required|integer',
             'produk_id'=>'required|integer',
         ]);
         kategori::create($valid);
@@ -54,7 +54,8 @@ class kategoricontroller extends Controller
     public function edit(string $id)
     {
         $produk=produk::all();
-        return view('editkategori',compact('produk'));
+        $data=kategori::find($id);
+        return view('editkategori',compact('produk','data'));
     }
 
     /**
@@ -63,7 +64,7 @@ class kategoricontroller extends Controller
     public function update(Request $request, string $id)
     {
         $valid=$request->validate([
-            'namakategeri'=>'required|string',
+            'namakatageri'=>'required|string',
             'desckatagori'=>'required|string',
             'produk_id'=>'required|integer',
         ]);

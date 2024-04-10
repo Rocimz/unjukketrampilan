@@ -1,6 +1,6 @@
 @extends('template')
 @section('header')
-Tambah Post
+Edit Produk
 @endsection
 @section('body')
 <form action="{{route('produk.update',$data->id)}}" method="POST" enctype="multipart/form-data">

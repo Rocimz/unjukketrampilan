@@ -19,7 +19,7 @@
         @foreach ($data as $item)
       <tr>
         <th scope="row">{{$loop->iteration}}</th>
-        <td>{{$item->namaproduk}}</td>
+        <td>{{$item->namaproduk}}</td> 
         <td><img src="{{ asset('storage/' . $item->foto) }}" width="25%"></td>
         <td>{{$item->harga}}</td>
         <td>{{$item->descproduk}}</td>
